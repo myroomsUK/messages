@@ -12,11 +12,11 @@ class CreateEnquiry
     private $email;
     private $phoneNumber;
     private $paymentId;
-    private $portal;
+    private $portalId;
 
     private const dateFormat = 'Y-m-d';
 
-    public function __construct(string $unitId, \DateTimeImmutable $startDate, \DateTimeImmutable $endDate, string $name, string $surname, string $phoneNumber, string $email, string $paymentId, string $portal)
+    public function __construct(string $unitId, \DateTimeImmutable $startDate, \DateTimeImmutable $endDate, string $name, string $surname, string $phoneNumber, string $email, string $paymentId, string $portalId)
     {
 
         \Assert\Assert::lazy()
@@ -28,7 +28,7 @@ class CreateEnquiry
             ->that($email)->notNull()->string()->email()
             ->that($phoneNumber)->notNull()->string()
             ->that($paymentId)->notNull()->string()
-            ->that($portal)->notNull()->string()
+            ->that($portalId)->notNull()->string()
             ->verifyNow();
 
         $this->name= $name;
@@ -39,7 +39,7 @@ class CreateEnquiry
         $this->phoneNumber= $phoneNumber;
         $this->unitId = $unitId;
         $this->paymentId = $paymentId;
-        $this->portal = $portal;
+        $this->portalId = $portalId;
 
     }
 
@@ -83,8 +83,8 @@ class CreateEnquiry
         return $this->paymentId;
     }
 
-    public function getPortal(): string
+    public function getPortalId(): string
     {
-        return $this->portal;
+        return $this->portalId;
     }
 }
