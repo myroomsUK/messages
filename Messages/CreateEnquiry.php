@@ -11,10 +11,11 @@ class CreateEnquiry
     private $surname;
     private $email;
     private $phoneNumber;
+    private $paymentId;
 
     private const dateFormat = 'Y-m-d';
 
-    public function __construct(string $unitId, \DateTimeImmutable $startDate, \DateTimeImmutable $endDate, string $name, string $surname, string $phoneNumber, string $email)
+    public function __construct(string $unitId, \DateTimeImmutable $startDate, \DateTimeImmutable $endDate, string $name, string $surname, string $phoneNumber, string $email, string $paymentId)
     {
 
         \Assert\Assert::lazy()
@@ -25,6 +26,7 @@ class CreateEnquiry
             ->that($endDate->format(self::dateFormat))->date(self::dateFormat)->greaterThan($startDate->format(self::dateFormat))
             ->that($email)->string()->email()
             ->that($phoneNumber)->string()
+            ->that($paymentId)->string()
             ->verifyNow();
 
         $this->name= $name;
@@ -34,6 +36,7 @@ class CreateEnquiry
         $this->email= $email;
         $this->phoneNumber= $phoneNumber;
         $this->unitId = $unitId;
+        $this->paymentId = $paymentId;
     }
 
     public function getUnitId(): string
@@ -71,5 +74,8 @@ class CreateEnquiry
         return $this->phoneNumber;
     }
 
-
+    public function getPaymentId(): string
+    {
+        return $this->paymentId;
+    }
 }
