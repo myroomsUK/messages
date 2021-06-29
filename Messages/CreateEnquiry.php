@@ -35,4 +35,41 @@ class CreateEnquiry
         $this->phoneNumber= $phoneNumber;
         $this->unitId = $unitId;
     }
+
+    public function getUnitId(): string
+    {
+        return $this->unitId;
+    }
+
+    public function getStartDate(): \DateTimeImmutable
+    {
+        return $this->startDate;
+    }
+
+    public function getEndDate(): \DateTimeImmutable
+    {
+        return $this->endDate;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getSurname(): string
+    {
+        return $this->surname;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getPhoneNumber(): string
+    {
+        return $this->phoneNumber;
+    }
+
+
 }
