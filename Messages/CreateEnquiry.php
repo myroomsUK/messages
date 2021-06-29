@@ -22,7 +22,7 @@ class CreateEnquiry
             ->that($surname)->notNull()->string()
             ->that($unitId)->notNull()->string()
             ->that($startDate->format(self::dateFormat))->date( self::dateFormat)
-            ->that($endDate->format(self::dateFormat))->date(self::dateFormat)->greaterThan($checkIn->format(self::dateFormat))
+            ->that($endDate->format(self::dateFormat))->date(self::dateFormat)->greaterThan($startDate->format(self::dateFormat))
             ->that($email)->string()->email()
             ->that($phoneNumber)->string()
             ->verifyNow();
