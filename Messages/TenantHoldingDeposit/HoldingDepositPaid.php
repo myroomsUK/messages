@@ -4,21 +4,21 @@ namespace Myrooms\Messages\Messages\TenantHoldingDeposit;
 
 class HoldingDepositPaid
 {
-    private $paymentId;
+    private $paymentUlid;
 
     private const dateFormat = 'Y-m-d';
 
-    public function __construct(int $paymentId)
+    public function __construct(string $paymentUlid)
     {
         \Assert\Assert::lazy()
-            ->that($paymentId)->notNull()->integer()
+            ->that($paymentUlid)->notNull()->string()
             ->verifyNow();
 
-        $this->paymentId = $paymentId;
+        $this->paymentUlid = $paymentUlid;
     }
 
-    public function getPaymentId(): string
+    public function getPaymentUlid(): string
     {
-        return $this->paymentId;
+        return $this->paymentUlid;
     }
 }
