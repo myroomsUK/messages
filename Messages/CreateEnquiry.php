@@ -4,6 +4,17 @@ namespace Myrooms\Messages\Messages;
 
 class CreateEnquiry
 {
+    const UNIT_ID = "unitId";
+    const START_DATE = "startDate";
+    const END_DATE = "endDate";
+    const NAME = "name";
+    const SURNAME = "surname";
+    const EMAIL = "email";
+    const PHONE = "phoneNumber";
+    const PAYMENT_ID = "paymentId";
+    const PORTAL_ID = "portalId";
+
+
     private $unitId;
     private $startDate;
     private $endDate;
@@ -86,5 +97,23 @@ class CreateEnquiry
     public function getPortalId(): string
     {
         return $this->portalId;
+    }
+
+    public function toArray(){
+        return [
+            self::NAME => $this->name,
+            self::SURNAME => $this->surname,
+            self::START_DATE => $this->startDate,
+            self::END_DATE => $this->endDate,
+            self::EMAIL => $this->email,
+            self::PHONE => $this->phoneNumber,
+            self::UNIT_ID => $this->unitId,
+            self::PAYMENT_ID => $this->paymentId,
+            self::PORTAL_ID => $this->portalId
+        ];
+    }
+
+    static public function fromArray($array){
+        return new self($array[self::UNIT_ID], $array[self::START_DATE], $array[self::END_DATE], $array[self::NAME], $array[self::SURNAME], $array[self::PHONE], $array[self::EMAIL], $array[self::PAYMENT_ID], $array[self::PORTAL_ID]);
     }
 }
