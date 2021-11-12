@@ -51,7 +51,6 @@ class CreateEnquiry
         $this->unitId = $unitId;
         $this->paymentId = $paymentId;
         $this->portalId = $portalId;
-
     }
 
     public function getUnitId(): string
