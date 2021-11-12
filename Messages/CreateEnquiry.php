@@ -103,8 +103,8 @@ class CreateEnquiry
         return [
             self::NAME => $this->name,
             self::SURNAME => $this->surname,
-            self::START_DATE => $this->startDate,
-            self::END_DATE => $this->endDate,
+            self::START_DATE => $this->startDate->format(self::dateFormat),
+            self::END_DATE => $this->endDate->format(self::dateFormat),
             self::EMAIL => $this->email,
             self::PHONE => $this->phoneNumber,
             self::UNIT_ID => $this->unitId,
@@ -114,6 +114,6 @@ class CreateEnquiry
     }
 
     static public function fromArray($array){
-        return new self($array[self::UNIT_ID], $array[self::START_DATE], $array[self::END_DATE], $array[self::NAME], $array[self::SURNAME], $array[self::PHONE], $array[self::EMAIL], $array[self::PAYMENT_ID], $array[self::PORTAL_ID]);
+        return new self($array[self::UNIT_ID], new \DateTimeImmutable($array[self::START_DATE]), new \DateTimeImmutable($array[self::END_DATE]) , $array[self::NAME], $array[self::SURNAME], $array[self::PHONE], $array[self::EMAIL], $array[self::PAYMENT_ID], $array[self::PORTAL_ID]);
     }
 }
