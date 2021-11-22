@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Myrooms\Messages\Messages\Enquiry;
 
+use Myrooms\Messages\Messages\Enquiry\Exception\InvalidEnquiryStatusException;
+
 class EnquiryStatus
 {
     const CREATED = 0;
@@ -21,10 +23,14 @@ class EnquiryStatus
      */
     private $status;
 
+    /**
+     * @param int $status
+     * @throws InvalidEnquiryStatusException
+     */
     public function __construct(int $status)
     {
-        if (!in_array($status, self::VALUES)) {
-            throw new \Exception(sprintf("%d is not a valid value.", $status));
+        if (!in_array($status, array_keys(self::VALUES))) {
+            throw new InvalidEnquiryStatusException(sprintf("%d is not a valid value.", $status));
         }
         
         $this->status = $status;

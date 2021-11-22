@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Myrooms\Messages\Messages\Enquiry;
 
+use Myrooms\Messages\Messages\Enquiry\Exception\InvalidEnquiryStatusException;
+
 class EnquiryStatusChanged
 {
     const ENQUIRY_ID = "enquiryId";
@@ -47,6 +49,11 @@ class EnquiryStatusChanged
         ];
     }
 
+    /**
+     * @param array $array
+     * @return static
+     * @throws InvalidEnquiryStatusException
+     */
     public static function fromArray(array $array): self
     {
         return new self($array[self::ENQUIRY_ID], new EnquiryStatus($array[self::STATUS]));
